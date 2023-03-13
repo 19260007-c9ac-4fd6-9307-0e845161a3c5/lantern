@@ -3,11 +3,14 @@
 dir="$(cd `dirname $0`; pwd)"
 echo "Workdir: $dir"
 
-version=`curl -s https://api.github.com/repos/getlantern/lantern-binaries/commits \
-    | grep '"message": "' \
-    | grep 'Lantern [0-9\.]\+' \
-    | head -1 \
-    | sed 's/.*\(Lantern [0-9\.]*\).*/\1/g'`
+# 用 jq 来解析
+version=`curl -s https://api.github.com/repos/getlantern/lantern/releases | jq '.[0]' | jq '.tag_name'`
+# version=`curl -s https://api.github.com/repos/getlantern/lantern-binaries/commits \
+#     | grep '"message": "' \
+#     | grep 'Lantern [0-9\.]\+' \
+#     | head -1 \
+#     | sed 's/.*\(Lantern [0-9\.]*\).*/\1/g'`
+
 if [[ -z $version ]]; then
     echo "Get latest version: error"
     exit 1
@@ -28,7 +31,11 @@ fi
 
 echo 'Version change.'
 
-wget -o /tmp/wget.log -O ./binaries/lantern-installer-64-bit.deb https://raw.githubusercontent.com/getlantern/lantern-binaries/master/lantern-installer-64-bit.deb
+# 地址变了
+# https://media.githubusercontent.com/media/getlantern/lantern-binaries/main/lantern-installer-64-bit.deb
+
+# 等下载完,你再更改 version 文件吧
+wget -o /tmp/wget.log -O ./binaries/lantern-installer-64-bit.deb https://media.githubusercontent.com/media/getlantern/lantern-binaries/main/lantern-installer-64-bit.deb
 
 sed -i "1c # Docker 运行 $version，科学上网" README.MD
 echo $version > "$dir/version"
