@@ -1,4 +1,4 @@
-# Docker 运行 Lantern 6.6.1，科学上网
+# Docker 运行 "7.3.6"，科学上网
 [![Build Status](https://travis-ci.org/wilon/lantern.svg?branch=master)](https://travis-ci.org/wilon/lantern)
 ```diff
 + 输入我的邀请码 YMD8TTG 来获得三个月的蓝灯专业版！
