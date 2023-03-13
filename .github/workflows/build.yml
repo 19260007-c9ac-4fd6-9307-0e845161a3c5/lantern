@@ -15,8 +15,8 @@ jobs:
 
     - name: Set up Git
       run: |
-        git config --global user.name "GitHub Actions"
-        git config --global user.email "actions@github.com"
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
 
     - name: Run check_update script
       run: |
@@ -24,8 +24,8 @@ jobs:
         ./check_update.sh
 
     - name: Push changes
-      if: success()
-      uses: ad-m/github-push-action@v0.5.0
+      # if: success()
+      uses: ad-m/github-push-action@master
       with:
         branch: master
         github_token: ${{ secrets.GITHUB_TOKEN }}
