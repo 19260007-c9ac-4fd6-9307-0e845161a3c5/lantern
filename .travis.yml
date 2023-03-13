@@ -21,7 +21,7 @@ before_script:
 
 env:
  global:
-   - GH_REF: github.com/wilon/lantern.git
+   - GH_REF: github.com/19260007-c9ac-4fd6-9307-0e845161a3c5/lantern.git
 
 script:
   - git remote set-url origin https://${GH_TOKEN}@${GH_REF}
@@ -35,6 +35,6 @@ after_script:
 notifications:
   email:
     recipients:
-      - wilonx@163.com
+      - dingyi342@outlook.com
     on_success: never
     on_failure: never
